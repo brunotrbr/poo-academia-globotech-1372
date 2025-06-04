@@ -1,0 +1,1 @@
+# Com base nas classes "Titular" e "ContaCorrente" disponíveis no arquivo "aula_5/conta_corrente.py", implemente uma classe "Banco" que gerencie várias contas correntes. A classe "Banco" deve permitir adicionar contas, buscar contas por titular e exibir o extrato de uma conta específica.
