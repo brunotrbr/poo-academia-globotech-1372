@@ -28,6 +28,7 @@
 # # Objetos são reais ou abstratos?
 # - Objetos podem ser representações reais (pessoas) ou abstratas (departamento de TI)
 
+#################################################################################################################
 
 # ## Praticando um pouco
 # # Exercício 1
@@ -40,7 +41,7 @@
 # # Com base nos exercícios, podemos observar que:
 # Mesmo comportamento + mesma estrutura = mesma categoria ou classe de objeto
 
-#######################################################################################################
+#################################################################################################################
 
 # ## Princípios Básicos da POO
 
@@ -99,6 +100,8 @@ print(lista)
 # Facilita a vida do usuário e deixa o sistema mais simples de entender e usar.
 # Cria uma interface mais limpa e intuitiva.
 
+#################################################################################################################
+
 # ### Encapsulamento
 
 # - Princípio usado para proteger os dados e controlar como eles são acessados e modificados.
@@ -150,6 +153,7 @@ print(cofre.consultar_saldo())
 # Ele esconde o interior dos objetos e permite que você interaja com eles apenas através de métodos (funções) que definem regras e validações.
 # Isso deixa seu código mais organizado, seguro e fácil de manter.
 
+#################################################################################################################
 
 # ### Herança
 
@@ -219,6 +223,7 @@ bike.empinar()         # Método próprio
 # - Evita repetição de código e organiza melhor as relações entre objetos.
 # - As classes filhas podem usar tudo que a classe pai tem e ainda adicionar suas próprias características.
 
+#################################################################################################################
 
 # ### Polimorfismo
 
@@ -318,6 +323,7 @@ class Animal:
 
 # Deixa o código mais flexível, limpo e organizado.
 
+#################################################################################################################
 
 # ### Composição de objetos
 
