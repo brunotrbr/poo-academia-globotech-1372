@@ -33,10 +33,43 @@
 # ## Praticando um pouco
 # # Exercício 1
 # Pensando nos conceitos de estado e função mencionados acima, descreva um portão de garagem:
+# abrir/fechar
+# cor
+# trancado/destrancado
+# material: ferro, madeira, alumínio
 
 # # Exercício 2
 # Pensando nos conceitos de estado e função mencionados acima, descreva uma carro:
+# modelo
+# cor
+# numero de portas
+# marca
+# ano
+# ligado/desligado
+# acelerar/frear
+class Carro:
+    def __init__(self):
+        self._ligado = False # Estado inicial do carro é desligado
+        self._cor = 'Azul'
+        self._modelo = 'Fusca'
+        self._numero_portas = 4
+        self._marca = 'Volkswagen'
+        self._ano = 1970
 
+    def ligar(self):
+        if not self._ligado:
+            self._ligado = True
+        else:
+            self._ligado = False
+
+c1 = Carro()
+print(c1._ligado)
+c1.ligar()
+print(c1._ligado)
+
+## características -> atributos
+## estado -> conjunto de valores dos atributos em um determinado momento
+## métodos -> ações
 
 # # Com base nos exercícios, podemos observar que:
 # Mesmo comportamento + mesma estrutura = mesma categoria ou classe de objeto
@@ -71,7 +104,6 @@ def fazer_cafe():
   pass
 
 # E na prática/vida real:
-
 
 lista = []
 
@@ -188,14 +220,47 @@ class Veiculo:
     def frear(self):
         print("Freando...")
 
+class Motorizado:
+    def __init__(self, potencia):
+        self.potencia = potencia
+
+
+# Exemplos de classes específicas que herdam de Veiculo:
+class Veiculo:
+    def __init__(self, cor):
+        self.cor = cor
+
+    def acelerar(self):
+        print("Acelerando...")
+
+    def frear(self):
+        print("Freando...")
+
+
+
 # Exemplos de classes específicas que herdam de Veiculo:
 class Carro(Veiculo):
     def __init__(self, cor, modelo):
         super().__init__(cor)  # Chama o construtor da classe pai
+        # Veiculo.__init__(self, cor) # Outra forma de chamar o construtor da classe pai
         self.modelo = modelo
 
     def abrir_porta(self):
         print("Abrindo porta do carro.")
+
+# Exemplo de classe que herda de Veiculo e Motorizado
+class Carro(Veiculo, Motorizado):
+    def __init__(self, cor, modelo, potencia):
+        Veiculo.__init__(self, cor)  # Chama o construtor da classe veiculo
+        Motorizado.__init__(self, potencia)  # Chama o construtor da classe motorizada
+        self.modelo = modelo
+
+    def abrir_porta(self):
+        print("Abrindo porta do carro.")
+
+carro = Carro("vermelho", "sedan", 150)
+carro.acelerar()
+
 
 class Bicicleta(Veiculo):
     def __init__(self, cor, marchas):
@@ -207,7 +272,7 @@ class Bicicleta(Veiculo):
 
 # Exemplo de código usando as classes
 
-carro = Carro("vermelho", "sedan")
+carro = Carro("vermelho", "sedan", 150)
 carro.acelerar()       # Método herdado
 carro.abrir_porta()    # Método próprio
 
