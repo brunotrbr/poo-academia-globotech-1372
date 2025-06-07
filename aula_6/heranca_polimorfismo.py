@@ -12,7 +12,7 @@
 # Exemplo da classe Conta e início da classe ContaCorrente:
 # OBS: Foi feita uma mudança da classe "ContaCorrente" vista na aula 5 para a classe "Conta" abaixo. Você consegue identificar o que foi alterado? Por qual motivo?
 
-from aula_5.conta_corrente import Titular
+from conta_corrente import Titular
 from typing import List, Dict
 from datetime import date
 
@@ -23,23 +23,29 @@ class Conta:
         self._conta: str = conta
         self._saldo: float = 0.0
         self._extrato: List[Dict[str, str]] = []
+        self.__teste: int = 0
 
+  #TODO: Adicionar propriedades
   @property
   def titular(self) -> Titular:
-      return self._titular
+    return self._titular
 
   @property
   def agencia(self) -> str:
-      return self._agencia
+    return self._agencia
 
   @property
   def conta(self) -> str:
       return self._conta
 
+  @conta.setter
+  def conta(self, nova_conta: str) -> None:
+    self._conta = nova_conta
+
   @property
   def saldo(self) -> float:
-      return self._saldo
-  
+    return self._saldo
+    
   def _adicionar_extrato(self, tipo: str, valor: float):
       valor_formatado = '{:.2f}'.format(valor)
       self._extrato.append({'key': tipo.upper(), 'value': valor_formatado})
@@ -84,10 +90,33 @@ class ContaCorrente(Conta):
         super().__init__(titular, agencia, conta)
 
     # TODO: Implementar métodos "pagamento" e "transferencia".
+    def pagamento(self, valor: float) -> None:
+        self._saidas(valor, 'Pagamento')
+    
+    def transferencia(self, conta_destino: Conta, valor: float):
+        nome_operacao = 'Transferencia'
+        if self._saldo >= valor:
+            conta_destino.deposito(valor)
+            self._saldo -= valor
+            self._adicionar_extrato('s', valor)
+            self._msg_resposta(sucesso=True, nome_operacao=nome_operacao)
+        else:
+            self._msg_resposta(sucesso=False, nome_operacao=nome_operacao)
 
 # TODO: Implementar a classe ContaPoupanca
 
-
+c1 = Conta(Titular('Daniel', '123456', date(year=1991, month=8, day=8)), '13', '234')
+print(c1._agencia) # Essa linha não vai causar uma exceção no código
+# print(c1.__teste) # Essa linha vai causar uma exceção no código
+print(c1.titular)
+titular_conta = c1.titular
+c1.titular.nome_titular = 'Edvaldo'
+titular_conta.nome_titular = 'Mirra'
+c1.conta = '999'
+c2 = ContaCorrente(Titular('Andre', '987', date(year=1991, month=8, day=8)), '13', '555')
+c2.deposito(200)
+c2._saldo = 500
+c2.transferencia(c1, 100)
 
 # No exemplo acima:
 
