@@ -103,6 +103,49 @@ print(bool(drex))
 drex = Drex(0)
 print(bool(drex))
 
+# ## __repr__
+
+# O método mágico __repr__ serve para definir como o objeto será representado oficialmente no Python, ou seja, o que aparece quando a gente chama repr(obj) ou simplesmente digita o nome do objeto no console (fora de um print()).
+
+# A ideia do __repr__ é dar uma descrição precisa e útil do objeto, que ajude a debugar e até reconstruir o objeto, se possível.
+
+# > Uma boa prática é que __repr__ retorne uma string que poderia ser usada para recriar o objeto, como: Drex(10).
+
+class Drex:
+  def __init__(self, valor):
+    self._valor = valor
+
+  def __str__(self):
+    arredondado = round(self._valor, 2)
+    return f'R$ {arredondado:.2f}'
+
+  def __float__(self):
+    return float(self._valor)
+
+  def __bool__(self):
+    if self._valor > 0:
+      return True
+    return False
+
+  def __repr__(self):
+    return f"Drex({self._value})"
+
+d = Drex(7.89)
+
+print(d)       # Usa __str__ → R$ 7.89
+print(repr(d)) # Usa __repr__ → Drex(7.89)
+
+# Usamos o __str__ para tornar o objeto legível para humanos.
+# Usamos o __repr__ para a representação oficial e para debug do objeto.
+
+### Importância de definir o __repr__:
+
+# Quando colocamos objetos dentro de uma list, dict, set ou qualquer estrutura de dados, o Python não usa o __str__ para exibir cada item, ele usa o __repr__.
+
+carteira = [Drex(10), Drex(7.5), Drex(3.25)]
+
+print(carteira)
+
 ########################################################################################################
 
 # ## Métodos aritméticos
@@ -143,13 +186,13 @@ class Drex:
     def __float__(self):
         return float(self._valor)
     
-    def __int__(self):
-        return int(self._valor)
-    
     def __bool__(self):
         if self._valor > 0:
             return True
         return False
+
+    def __repr__(self):
+      return f"Drex({self._value})"
     
     def __add__(self, x):
         soma = self._valor + x._valor
@@ -184,14 +227,17 @@ class Drex:
   def __str__(self):
     arredondado = round(self._valor, 2)
     return f'R$ {arredondado:.2f}'
-
+    
   def __float__(self):
     return float(self._valor)
-
+    
   def __bool__(self):
     if self._valor > 0:
-      return True
+        return True
     return False
+
+  def __repr__(self):
+    return f"Drex({self._value})"
 
   def __add__(self, x):
     soma = self._valor + x._valor
@@ -239,6 +285,9 @@ class Drex:
 
   def __bool__(self):
     return self._valor > 0
+
+  def __repr__(self):
+    return f"Drex({self._value})"
 
   def __add__(self, x):
     soma = self._valor + x._valor
