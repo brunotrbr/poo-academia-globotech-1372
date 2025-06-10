@@ -59,7 +59,36 @@ print(rd()) # gera um float entre 0 e 1
 
 help(random)
 
+import random
+print(random.randint(1,10))
 
+def random():
+    return print('Olá 2')
+
+# print(random.randint(1,100)) # Da erro 'function' object has no attribute 'randint' porque sobrescrevemos a biblioteca random com o def da função random.
+
+def rd():
+    return print("Método rd")
+
+print(rd())
+rd()
+
+# def metodo_sem_retorno(): O método não deve retornar nada
+def metodo_sem_retorno() -> None: #  O método não deve retornar nada
+    print('metodo_sem_retorno')
+
+def metodo_retorna_bool() -> bool:
+    return True
+
+def rd():
+    return print('Metodo rd')
+
+variavel_sem_retorno = metodo_sem_retorno()
+variavel_bool = metodo_retorna_bool()
+variavel_rd = rd()
+print(rd())
+
+a = 2
 # ## Módulos
 
 # Qualquer script Python (arquivo com extensão .py) pode ser considerado um módulo.
@@ -108,6 +137,30 @@ help(random)
 # # ou
 
 # from estojo import borracha
+
+# Importando a classe Lapis e Borracha diretamente
+from estojo import Lapis
+from estojo import Borracha
+
+lapis = Lapis()
+lapis.escrever('olá')
+lapis.desenhar()
+
+borracha = Borracha()
+borracha.apagar()
+a = 2
+
+# Importando as funções escrever e apagar
+from estojo import escrever, apagar
+
+escrever("teste")
+apagar()
+a = 2
+
+# O __init__ não bloqueia a importação da classe Lapis 
+from estojo import lapis
+lapis._desenhar()
+a = 2
 
 
 # O Python só entende que a pasta estojo é um pacote porque tem o `__init__.py` lá dentro. Ele marca a pasta como um pacote de verdade.
@@ -340,7 +393,7 @@ print(t1.data_nascimento)
 # |----- __init__.py
 # |----- modulo_contabase.py
 # |----- modulo_corrente.py
-# |----- modulo_corrente.py
+# |----- modulo_poupanca.py
 
 # TODO:
 # Importar conta corrente e conta poupança no arquivo `main.py`

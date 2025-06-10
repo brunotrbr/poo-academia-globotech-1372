@@ -34,7 +34,7 @@ drex = Drex(5)
 
 drex = Drex(5)
 print(drex)
-str(drex)
+print(str(drex))
 
 # O que aconteceu?
 
@@ -63,17 +63,15 @@ class Drex:
 
   def __str__(self):
     arredondado = round(self._valor, 2)
-    return f'R$ {arredondado:.2f}'
+    return f"R$ {arredondado:.2f}"
 
 drex = Drex(5)
 print(drex)
-
-str(drex)
+print(str(drex))
 
 drex = Drex(4.976)
 print(drex)
-
-str(drex)
+print(str(drex))
 
 # Lembrando, o __str__ seria equivalente ao `ToString()` do Java e do C#
 
@@ -128,7 +126,7 @@ class Drex:
     return False
 
   def __repr__(self):
-    return f"Drex({self._value})"
+    return f"Drex({self._valor})"
 
 d = Drex(7.89)
 
