@@ -150,10 +150,10 @@ print(carteira)
 
 # # Vamos considerar a seguinte operação matemática:
 
-d1 = Drex(3)
-d2 = Drex(1.5)
+# d1 = Drex(3)
+# d2 = Drex(1.5)
 
-soma = d1 + d2
+# soma = d1 + d2
 
 # - Métodos aritméticos definem como o objeto deve agir caso receba uma operação com os sinais aritméticos: `+`, `-`, `*`, `/`, `%`, etc
 # - Ex:
@@ -169,9 +169,9 @@ print([2]+[3])
 
 # - Na operação `instancia_1 + instancia_2`, o python interpreta como `instancia1.__add__(instancia2)`
 
-d1 = Drex(2)
-d2 = Drex(3)
-print(d1+d2) # da erro pois o programa não sabe o que fazer com o sinal de +
+# d1 = Drex(2)
+# d2 = Drex(3)
+# print(d1+d2) # da erro pois o programa não sabe o que fazer com o sinal de +
 
 class Drex:
     def __init__(self, valor):
@@ -192,13 +192,20 @@ class Drex:
     def __repr__(self):
       return f"Drex({self._value})"
     
-    def __add__(self, x):
-        soma = self._valor + x._valor
-        return Drex(soma)
-    
+    def __add__(self, x: Drex):
+      soma = self._valor + x._valor
+      return Drex(soma)
+
     def __sub__(self, x):
         return Drex(self._valor - x._valor)
 
+d1 = Drex(5)
+d2 = Drex(3.6)
+print(d1 + d2)
+
+d3 = Drex(5)
+d4 = Drex(3.6)
+print(d3-d4)
 
 # Outras operações matemáticas que podem ser implementadas com métodos mágicos:
 
@@ -252,6 +259,15 @@ print(d1 == d2)
 d3 = Drex(2)
 d4 = Drex(2)
 print(d3 == d4)
+# print(d3 > d4)
+
+# Outras operações de comparação que podem ser implementadas com métodos mágicos:
+
+# __gt__ : greater than/maior que (>)
+# __ge__ : greater or equal/maior ou igual (>=)
+# __lt__ : less than/menor que (<)
+# __le__ : less or equal/menor ou igual (<=)
+# __ne__ : not equal/diferente (!=)
 
 # ### __hash__ (hash de objetos)
 
@@ -261,7 +277,7 @@ print(d3 == d4)
 # Estruturas de dados baseadas em hash são estruturas que usam um "código único" (chamado hash) para guardar e buscar informações de forma muito rápida.
 
 # Por exemplo, tentem pensar em um armário com várias gavetas.
-# Cada vez que queremos guardar algo (como uma chave ou nome), usamos uma função hash para descobrir em qual gaveta aquilo deve ficar.
+# Cada vez que queremos guardar algo (como uma chave ou camiseta), usamos uma função hash para descobrir em qual gaveta aquilo deve ficar.
 
 # Quando precisar buscar depois, é só calcular o hash de novo — e pronto, já sabe a gaveta certa!
 
@@ -295,7 +311,8 @@ class Drex:
     return self._valor == x._valor
 
   def __hash__(self):
-    return hash(self._valor)  # Usa o hash interno do número
+    valor_hash = hash(self._valor)
+    return valor_hash # Usa o hash interno do número
 
 d1 = Drex(10)
 d2 = Drex(10)
@@ -321,6 +338,7 @@ print(carteira[d3])  # Saldo reserva
 # E se fizessemos o print abaixo, o que aconteceria?
 
 print(carteira[d2])
+# O hash do d2 é o número 10. No dicionário, o hash com o número 10 traz o valor 'Saldo principal'. O python não sabe que o nome das variáveis são diferentes, ele sabe o hash armazenado e o valor que ele carrega. Por isso que ao usar o print(carteira[d2]) ele traz o valor de carteira[d1]
 
 ########################################################################################################
 

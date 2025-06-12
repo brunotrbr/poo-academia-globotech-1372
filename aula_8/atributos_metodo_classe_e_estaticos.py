@@ -118,6 +118,7 @@ print(t1.nome_titular)
 # print(t2.nome_titular) # t2 não é criado, pois cpf já existe
 print(t3.nome_titular)
 print(Titular.cpfs_utilizados)
+a = 2
 
 # Problema!!!
 
@@ -201,11 +202,9 @@ class Titular:
 cpf = '12345678900'
 dt_nasc = date(year=1991, month=8, day=6)
 t1 = Titular('Pedro', cpf, dt_nasc)
-
 t1.listar_cpfs()
 
 print()
-
 cpf = '98765432100'
 dt_nasc = date(year=1995, month=6, day=20)
 t2 = Titular('Laura', cpf, dt_nasc)
@@ -291,9 +290,9 @@ class Titular:
             return False
 
 
-cpf1 = '40040040047'
-dt_nasc = date(year=1991, month=8, day=6)
-t1 = Titular(nome='Pedro', cpf=cpf1, dt_nasc=dt_nasc)
+# cpf1 = '40040040047'
+# dt_nasc = date(year=1991, month=8, day=6)
+# t1 = Titular(nome='Pedro', cpf=cpf1, dt_nasc=dt_nasc)
 
 cpf2 = '40040040983'
 print(Titular.validar_cpf(cpf2))
